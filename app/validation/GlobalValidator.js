@@ -7,13 +7,14 @@ const validate = async function (rules, req) {
   const data = {};
   const requestBody = req.body ?? [];
 
-  console.log({ body: req.body });
   Object.keys(rules).forEach((key) => {
+    const rule = rules[key].optional();
     if (requestBody.hasOwnProperty(key)) {
       data[key] = requestBody[key];
     } else {
-      data[key] = null; // Set to null for fields not present in the request
+      //data[key] = null; // Set to null for fields not present in the request
     }
+    schema.keys({ [key]: rule });
   });
 
   try {
@@ -35,5 +36,6 @@ const validate = async function (rules, req) {
 const init = function () {
   global.validate = validate;
 };
+
 
 module.exports.init = init;

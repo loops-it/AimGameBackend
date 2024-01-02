@@ -1,9 +1,6 @@
-const e = require("express");
 const { notFoundException } = require("../exception");
 const PartnerModel = require("../models/partner");
-const ClientModel = require("../models/client");
 const WorkspaceModel = require("../models/workspace");
-const IndustryTypeModel = require("../models/industryType");
 const s3service = require("../services/s3Service");
 
 exports.getAllPartners = async () => {
@@ -11,80 +8,73 @@ exports.getAllPartners = async () => {
   return partners;
 };
 
-exports.getClientById = async (id) => {
-  const client = await ClientModel.findById(id);
-  return client;
+exports.getAllPartnersByWorkspace = async (workspaceId) => {
+  const partners = await PartnerModel.find({ workspaceId: workspaceId });
+  return partners;
 };
 
-exports.createClient = async (client) => {
-  const clientEmailExists = await ClientModel.findOne({
-    email: client.email,
-  });
+exports.getPartnerById = async (id) => {
+  const partner = await PartnerModel.findById(id);
+  return partner;
+};
+
+exports.createPartner = async (partner) => {
   const workspaceIdExists = await WorkspaceModel.findOne({
-    _id: client.workspaceId,
+    _id: partner.workspaceId,
   });
-  const industryTypeIdExists = await IndustryTypeModel.findOne({
-    _id: client.industryTypeId,
-  });
-  if (clientEmailExists) {
-    console.log("Email already exists");
-    throw new notFoundException("Email already exists");
-  } else if (!workspaceIdExists) {
+
+  if (!workspaceIdExists) {
     console.log("Workspace not found");
     throw new notFoundException("Workspace not found");
-  } else if (!industryTypeIdExists) {
-    console.log("Industry Type not found");
-    throw new notFoundException("Industry Type not found");
-  } else {
-    if (
-      client.photo !== null &&
-      client.photo !== undefined &&
-      client.photo !== ""
-    ) {
-      const image = client.photo;
-      const imageData = await s3service.upload(image, "clients");
-      client.photo = imageData.Location;
-    }
-    const newClient = await new ClientModel(client).save();
-    return newClient;
   }
+
+  if (
+    partner.image !== null &&
+    partner.image !== undefined &&
+    partner.image !== ""
+  ) {
+    const image = partner.image;
+    const imageData = await s3service.upload(image, "partners");
+    partner.image = imageData.Location;
+  }
+
+  const newPartner = await new PartnerModel(partner).save();
+  return newPartner;
 };
 
-exports.updateClient = async (id, client) => {
-  if (client.industryTypeId) {
+exports.updatePartner = async (id, partner) => {
+  if (
+    partner.workspaceId &&
+    partner.workspaceId !== null &&
+    partner.workspaceId !== undefined
+  ) {
     const workspaceIdExists = await WorkspaceModel.findOne({
-      _id: client.workspaceId,
+      _id: partner.workspaceId,
     });
-    if (!industryTypeIdExists) {
-      console.log("Industry Type not found");
-      throw new notFoundException("Industry Type not found");
-    }
-  }
-  if (client.workspaceId) {
-    const industryTypeIdExists = await IndustryTypeModel.findOne({
-      _id: client.industryTypeId,
-    });
+
     if (!workspaceIdExists) {
       console.log("Workspace not found");
       throw new notFoundException("Workspace not found");
     }
   }
+
   if (
-    client.photo !== null &&
-    client.photo !== undefined &&
-    client.photo !== ""
+    partner.image !== null &&
+    partner.image !== undefined &&
+    partner.image !== ""
   ) {
-    const image = client.photo;
-    const imageData = await s3service.upload(image, "clients");
-    client.photo = imageData.Location;
+    const image = partner.image;
+    const imageData = await s3service.upload(image, "partners");
+    partner.image = imageData.Location;
   }
-  const updatedClient = await ClientModel.findByIdAndUpdate(id, client, {
+
+  const updatedPartner = await PartnerModel.findByIdAndUpdate(id, partner, {
     new: true,
   });
-  return updatedClient;
+  return updatedPartner;
 };
 
-exports.deleteClient = async (id) => {
-  const deletedClient = await ClientModel.findByIdAndDelete(id);
-  return deletedClient;
+exports.deletePartner = async (id) => {
+  const deletedPartner = await PartnerModel.findByIdAndDelete(id);
+  return deletedPartner;
 };

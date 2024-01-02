@@ -4,8 +4,14 @@ const ClientModel = require("../models/client");
 const WorkspaceModel = require("../models/workspace");
 const IndustryTypeModel = require("../models/industryType");
 const s3service = require("../services/s3Service");
+
 exports.getAllClients = async () => {
   const clients = await ClientModel.find({});
+  return clients;
+};
+
+exports.getAllClientsByWorkspaceId = async (workspaceId) => {
+  const clients = await ClientModel.find({ workspaceId: workspaceId });
   return clients;
 };
 
@@ -53,18 +59,19 @@ exports.updateClient = async (id, client) => {
     const workspaceIdExists = await WorkspaceModel.findOne({
       _id: client.workspaceId,
     });
-    if (!industryTypeIdExists) {
-      console.log("Industry Type not found");
-      throw new notFoundException("Industry Type not found");
+    if (!workspaceIdExists) {
+      console.log("Workspace not found");
+      throw new notFoundException("Workspace not found");
+      
     }
   }
   if (client.workspaceId) {
     const industryTypeIdExists = await IndustryTypeModel.findOne({
       _id: client.industryTypeId,
     });
-    if (!workspaceIdExists) {
-      console.log("Workspace not found");
-      throw new notFoundException("Workspace not found");
+    if (!industryTypeIdExists) {
+      console.log("Industry Type not found");
+      throw new notFoundException("Industry Type not found");
     }
   }
   if (

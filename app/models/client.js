@@ -30,9 +30,21 @@ const clientSchema = Schema(
       type: Schema.Types.ObjectId,
       ref: "Workspace",
       required: true,
-    },
+    }
   },
   { timestamps: true }
 );
+
+clientSchema.virtual("opportunity-client", {
+  ref: "Opportunity",
+  localField: "_id",
+  foreignField: "clientId",
+});
+
+clientSchema.virtual("partner-client", {
+  ref: "Partner",
+  localField: "_id",
+  foreignField: "clientId",
+});
 
 module.exports = mongoose.model("Client", clientSchema);

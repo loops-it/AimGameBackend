@@ -73,3 +73,13 @@ exports.deleteFunnelStatus = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getFunnel = async (req, res, next) => {
+  try {
+    const { workspaceId } = req.params;
+    const data = await funnelStatusService.getFunnel(workspaceId);
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+};

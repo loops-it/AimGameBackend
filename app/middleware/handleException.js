@@ -3,7 +3,6 @@ const { MongoError } = require("mongodb");
 
 module.exports = (e, req, res, next) => {
   //Transform mongoose validation errors
-  console.log("first", e);
   if (e instanceof mongoose.Error.ValidationError) {
     e = transformMonooseValidationError(e);
   }
@@ -15,11 +14,14 @@ module.exports = (e, req, res, next) => {
   }
 
   if (e.code == 422) {
-    console.log("catch error from middleware");
     return res.status(e.code).json(e);
   }
 
   if (e.code == 404) {
+    return res.status(e.code).json(e);
+  }
+
+  if (e.code == 401) {
     return res.status(e.code).json(e);
   }
 

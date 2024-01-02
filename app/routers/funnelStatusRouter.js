@@ -13,4 +13,6 @@ router
   .put(funnelStatusController.updateFunnelStatus)
   .delete(funnelStatusController.deleteFunnelStatus);
 
+router.route("/funnel/:workspaceId").get(funnelStatusController.getFunnel);
+
 module.exports = router;

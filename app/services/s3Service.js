@@ -30,7 +30,6 @@ exports.upload = (base64, folder) => {
           reject(err);
         }
         if (data) {
-          console.log("Uploaded in:", data.Location);
           resolve(data);
         }
       });
@@ -69,7 +68,6 @@ exports.copyImage = (image) => {
         }
 
         if (data) {
-          console.log("Uploaded in:", data);
           resolve(data);
         }
       });

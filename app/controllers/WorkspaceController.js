@@ -101,3 +101,18 @@ exports.getWorkspaceBySubscription = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.getWorkspaceByContactEmail = async (req, res, next) => {
+  const { contactEmail } = req.params;
+  try {
+    if (!contactEmail) {
+      throw new validationException("contactEmail is required");
+    }
+    const data = await workspaceService.getWorkspaceByContactEmail(
+      contactEmail
+    );
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+};

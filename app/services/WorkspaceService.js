@@ -30,7 +30,9 @@ exports.updateWorkspace = async (id, workspace) => {
   const updatedWorkspace = await WorkspaceModel.findByIdAndUpdate(
     id,
     workspace,
-    { new: true }
+    { new: true,
+      select: "-createdAt -industryTypeId",
+     }
   );
   return updatedWorkspace;
 };
@@ -49,5 +51,12 @@ exports.getWorkspaceByIndustryType = async (industryTypeId) => {
 
 exports.getWorkspaceBySubscription = async (subscription) => {
   const workspace = await WorkspaceModel.find({ subscription: subscription });
+  return workspace;
+};
+
+exports.getWorkspaceByContactEmail = async (contactEmail) => {
+  const workspace = await WorkspaceModel.find({
+    contactEmail: contactEmail,
+  });
   return workspace;
 };

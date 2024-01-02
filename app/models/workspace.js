@@ -34,4 +34,22 @@ workspaceSchema.virtual("client-workspace", {
   foreignField: "workspaceId",
 });
 
+workspaceSchema.virtual("partner-workspace", {
+  ref: "Partner",
+  localField: "_id",
+  foreignField: "workspaceId",
+});
+
+workspaceSchema.virtual("workspaceUser-workspace", {
+  ref: "WorkspaceUser",
+  localField: "_id",
+  foreignField: "workspaceId",
+});
+
+workspaceSchema.virtual("opportunity-workspace", {
+  ref: "Opportunity",
+  localField: "_id",
+  foreignField: "workspaceId",
+});
+
 module.exports = mongoose.model("Workspace", workspaceSchema);

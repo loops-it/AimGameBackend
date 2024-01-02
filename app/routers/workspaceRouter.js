@@ -6,7 +6,9 @@ router
   .route("/")
   .post(workspaceController.createWorkspace)
   .get(workspaceController.getAllWorkspaces);
-
+router
+  .route("/check/:contactEmail")
+  .get(workspaceController.getWorkspaceByContactEmail);
 router
   .route("/:id")
   .get(workspaceController.getWorkspaceById)

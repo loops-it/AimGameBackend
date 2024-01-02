@@ -8,7 +8,7 @@ exports.getAllIndustryTypes = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-};
+}; 
 
 exports.getIndustryTypeById = async (req, res, next) => {
   const { id } = req.params;

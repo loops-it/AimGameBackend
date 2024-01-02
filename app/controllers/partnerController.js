@@ -1,6 +1,8 @@
 const { validationException } = require("../exception");
-const partnerService = require("../services/partnerService");
-const Joi = require("joi");
+const partnerService = require("../services/PartnerService");
+const { validationRules } = require("../helper/validationHelper");
+
+const validate = global.validate;
 
 exports.getAllPartners = async (req, res, next) => {
   try {
@@ -11,70 +13,56 @@ exports.getAllPartners = async (req, res, next) => {
   }
 };
 
+exports.getAllPartnersByWorkspaceId = async (req, res, next) => {
+  try {
+    const workspaceId = req.user.workspaceId;
+    const data = await partnerService.getAllPartnersByWorkspace(workspaceId);
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+};
 
-// exports.getClientById = async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     if (!id) {
-//       throw new validationException("id is required");
-//     }
-//     const data = await clientService.getClientById(id);
-//     res.status(200).json({ success: true, status: 200, data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+exports.getPartnerById = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    if (!id) {
+      throw new validationException("id is required");
+    }
+    const data = await partnerService.getPartnerById(id);
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+};
 
-// exports.createClient = async (req, res, next) => {
-//   const clientValidationRules = {
-//     name: Joi.string().required(),
-//     address: Joi.string().required(),
-//     photo: Joi.string().allow("", null),
-//     industryTypeId: Joi.string().required(),
-//     email: Joi.string().email().required(),
-//     workspaceId: Joi.string().required(),
-//     phone: Joi.string().allow("", null),
-//   };
+exports.createPartner = async (req, res, next) => {
+  try {
+    await validate(validationRules.createPartner, req);
+    const data = await partnerService.createPartner(req.body);
+    res.status(201).json({ success: true, status: 201, data });
+  } catch (error) {
+    next(error);
+  }
+};
 
-//   const { body } = req;
-//   try {
-//     await validate(clientValidationRules, req);
-//     const data = await clientService.createClient(body);
-//     res.status(201).json({ success: true, status: 201, data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+exports.updatePartner = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    await validate(validationRules.updatePartner, req);
+    const data = await partnerService.updatePartner(id, req.body);
+    res.status(201).json({ success: true, status: 201, data });
+  } catch (error) {
+    next(error);
+  }
+};
 
-// exports.updateClient = async (req, res, next) => {
-//   const { id } = req.params;
-//   const { body } = req;
-
-//   const clientValidationRules = {
-//     name: Joi.string().min(1).max(255).optional().allow(null), // Example: Ensure the name is between 1 and 255 characters
-//     address: Joi.string().optional().allow(null),
-//     photo: Joi.string().uri().optional().allow(null), // Assuming 'photo' is a URL
-//     industryTypeId: Joi.string().optional().allow(null),
-//     email: Joi.string().email().optional().allow(null),
-//     workspaceId: Joi.string().optional().allow(null),
-//     phone: Joi.string().optional().allow(null),
-//   };
-
-//   try {
-//     await validate(clientValidationRules, req);
-//     const data = await clientService.updateClient(id, body);
-//     res.status(201).json({ success: true, status: 201, data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// exports.deleteClient = async (req, res, next) => {
-//   const { id } = req.params;
-//   try {
-//     const data = await clientService.deleteClient(id);
-//     res.status(201).json({ success: true, status: 201, data });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
+exports.deletePartner = async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const data = await partnerService.deletePartner(id);
+    res.status(201).json({ success: true, status: 201, data });
+  } catch (error) {
+    next(error);
+  }
+};

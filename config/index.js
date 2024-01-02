@@ -1,4 +1,7 @@
 module.exports = {
+  SMTP_EMAIL: process.env.SMTP_EMAIL ?? "prince08@zohomail.com",
+  SMTP_PASSWORD: process.env.SMTP_PASSWORD ?? "Prince#08",
+  JWT_SECRET: process.env.JWT_SECRET ?? "secretAimGame",
   port: process.env.PORT ?? 4065,
   key:
     process.env.KEY ??

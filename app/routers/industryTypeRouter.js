@@ -1,16 +1,17 @@
 const express = require("express");
 const industryTypeController = require("../controllers/IndustryTypeController");
 const router = express.Router();
+const { validateToken } = require("../middleware/authMiddleware");
 
 router
   .route("/")
-  .post(industryTypeController.createIndustryType)
+  .post(validateToken, industryTypeController.createIndustryType)
   .get(industryTypeController.getAllIndustryTypes);
 
 router
   .route("/:id")
-  .get(industryTypeController.getIndustryTypeById)
-  .put(industryTypeController.updateIndustryType)
-  .delete(industryTypeController.deleteIndustryType);
+  .get(validateToken, industryTypeController.getIndustryTypeById)
+  .put(validateToken, industryTypeController.updateIndustryType)
+  .delete(validateToken, industryTypeController.deleteIndustryType);
 
 module.exports = router;
