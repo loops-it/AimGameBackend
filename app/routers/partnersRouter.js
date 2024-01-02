@@ -5,6 +5,7 @@ const router = express.Router();
 
 router
   .route("/")
+  .post(partnerController.createPartner)
   .get(partnerController.getAllPartners);
 
 // router

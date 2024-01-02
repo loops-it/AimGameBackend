@@ -15,7 +15,7 @@ const userSchema = Schema(
       type: String,
       required: true,
     },
-    phone: {
+    phone: { 
       type: String,
     },
     otp: {

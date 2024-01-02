@@ -11,7 +11,7 @@ const workspaceUserSchema = Schema(
       type: String,
     },
     phone: {
-      type: String,
+      type: String, 
     },
     workspaceId: {
       type: Schema.Types.ObjectId,

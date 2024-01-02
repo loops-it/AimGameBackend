@@ -47,4 +47,8 @@ clientSchema.virtual("partner-client", {
   foreignField: "clientId",
 });
 
+clientSchema.pre("find", function (next) {
+  this.populate("industryTypeId", "name"); 
+  next();
+});
 module.exports = mongoose.model("Client", clientSchema);

@@ -89,5 +89,12 @@ opportunitySchema.pre("save", async function (next) {
     next(error);
   }
 });
-
+opportunitySchema.pre("find", function (next) {
+  this.populate({
+    path: "funnelStatusId",
+    select: "status stage rate"
+  });
+  this.populate("leadId", "name");
+  next();
+});
 module.exports = mongoose.model("Opportunity", opportunitySchema);

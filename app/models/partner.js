@@ -9,11 +9,10 @@ const partnerSchema = Schema({
   company: {
     type: String,
   },
-  // clientId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Client",
-  //   required: true,
-  // },
+  clientId: {
+    type: Schema.Types.ObjectId,
+    ref: "Client",
+  },
   image: {
     type: String, // Assuming you store the image URL or file path
     // You might want to use a dedicated library or service for handling image uploads
@@ -50,6 +49,15 @@ const partnerSchema = Schema({
       },
     },
   ],
+});
+
+partnerSchema.pre("find", function (next) {
+  this.populate({
+    path: "clientId",
+    select: "email phone"
+  });
+  this.populate("workspaceId", "name"); 
+  next();
 });
 
 module.exports = mongoose.model("Partner", partnerSchema);
