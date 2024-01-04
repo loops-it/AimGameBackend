@@ -95,7 +95,7 @@ exports.forgetPassword = async ({ email }) => {
     email,
   });
   if (!user) {
-    throw new notFoundException("Invalid OTP");
+    throw new notFoundException("Invalid Email");
   } else {
     const recipientEmail = email;
     const subject = "Your OTP Code";
