@@ -95,6 +95,7 @@ opportunitySchema.pre("find", function (next) {
     select: "status stage rate"
   });
   this.populate("leadId", "name");
+  this.populate("clientId", "name");
   next();
 });
 module.exports = mongoose.model("Opportunity", opportunitySchema);
