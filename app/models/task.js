@@ -42,6 +42,7 @@ const taskSchema = Schema(
 );
 taskSchema.pre("find", function (next) {
   this.populate("opportunityId", "name");
+  this.populate("assignee", "name");
   next();
 });
 module.exports = mongoose.model("Task", taskSchema);
