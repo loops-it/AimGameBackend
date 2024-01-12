@@ -63,7 +63,7 @@ exports.createTask = async (req, res, next) => {
     priority: Joi.string().optional(),
     reminder: Joi.date().optional(),
     note: Joi.string().optional(),
-    opportunityId: Joi.string().optional().allow(null),
+    opportunityId: Joi.string().optional().allow(null), 
   };
   try {
     await validate(validationRule, req);

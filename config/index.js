@@ -7,7 +7,7 @@ module.exports = {
     process.env.KEY ??
     "$2a$12$Px4BgXSpSTGZcVrhvK27SeIt5fvdlp//RybVBv1/2PvX4iLVifMMG",
   database: {
-    database: process.env.DB_NAME ?? "aimgame-stging",
+    database: process.env.DB_NAME ?? "aimgame-web",
     host: process.env.DB_HOST ?? "cluster0.o4rpy.mongodb.net",
     user: process.env.DB_USER ?? "yohan",
     password: process.env.DB_PASSWORD ?? "123admin",

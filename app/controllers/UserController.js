@@ -107,4 +107,14 @@ exports.getMyWorkspaceUserDetails = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+
+
+};
+exports.getTeamMembers = async (req, res, next) => {
+  try {
+    const data = await userService.getTeamMembers();
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
 };

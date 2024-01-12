@@ -11,6 +11,7 @@ const partner = require("./partnerRouter");
 const opportunity = require("./opportunityRouter");
 const clientOrganizations = require("./clientOrganizationRouter");
 const tasks = require("./taskRouter");
+const teamMembers = require("./teamMembersRouter");
 
 router.use("/workspaces", workspaceRouter);
 router.use("/industryTypes", industryTypeRouter);
@@ -23,5 +24,6 @@ router.use("/partners", partner);
 router.use("/opportunities", opportunity);
 router.use("/client-organizations", clientOrganizations);
 router.use("/tasks", tasks);
+router.use("/team-members", teamMembers);
 
 module.exports = router;

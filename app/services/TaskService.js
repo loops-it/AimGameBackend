@@ -8,7 +8,7 @@ const OpportunityModel = require("../models/opportunity");
 const UserModel = require("../models/user");
 const s3service = require("./s3Service");
 
-exports.getAllTasks = async () => {
+exports.getAllTasks = async () => { 
   const tasks = await TaskModel.find({});
   return tasks;
 };

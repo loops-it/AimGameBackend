@@ -205,3 +205,10 @@ exports.getRoleByUIDAndWID = async (userId, workspaceId) => {
   const role = await WorkspaceUserModel.findOne({ userId, workspaceId });
   return role;
 };
+
+exports.getTeamMembers = async () => {
+  const users = await UserModel.find({
+    userRole: "team member",
+  });
+  return users;
+};
