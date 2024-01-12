@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const opportunitySchema = Schema({
   referenceNumber: {
-    type: Number,
+    type: String,
     required: true,
     unique: true,
   },

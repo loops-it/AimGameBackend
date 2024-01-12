@@ -7,6 +7,9 @@ const clientSchema = Schema(
       type: String,
       required: true,
     },
+    refNo: {
+      type: String,
+    },
     photo: {
       type: String,
     },

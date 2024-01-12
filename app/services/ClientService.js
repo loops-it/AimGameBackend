@@ -10,7 +10,9 @@ exports.getAllClients = async () => {
   return clients;
 };
 
+
 exports.getAllClientsByWorkspaceId = async (workspaceId) => {
+  console.log("sadasd",workspaceId);
   const clients = await ClientModel.find({ workspaceId: workspaceId });
   return clients;
 };

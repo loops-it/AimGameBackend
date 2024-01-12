@@ -12,7 +12,7 @@ router
 
 router
   .route("/workspace/:workspaceId")
-  .get(isAuth, opportunityController.getOpportunitiesByWorkspaceId);
+  .get(validateToken, opportunityController.getOpportunitiesByWorkspaceId);
 
 router
   .route("/client/:clientId")

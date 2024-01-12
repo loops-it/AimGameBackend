@@ -9,6 +9,11 @@ router
 router
   .route("/check/:contactEmail")
   .get(workspaceController.getWorkspaceByContactEmail);
+  
+router
+.route("/user/:id")
+.get(workspaceController.getWorkspaceByUser);
+
 router
   .route("/:id")
   .get(workspaceController.getWorkspaceById)

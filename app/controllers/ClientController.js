@@ -12,10 +12,17 @@ exports.getAllClients = async (req, res, next) => {
   }
 };
 
+
+
 exports.getAllClientsByWorkspaceId = async (req, res, next) => {
   try {
-    const workspaceId = req.user.workspaceId;
-    const data = await clientService.getAllClientsByWorkspaceId(workspaceId);
+    const { workspaceId } = req.params;
+    if (!workspaceId) {
+      throw new validationException("workspaceId is required");
+    }
+    const data = await clientService.getAllClientsByWorkspaceId(
+      workspaceId
+    );
     res.status(200).json({ success: true, status: 200, data });
   } catch (error) {
     next(error);

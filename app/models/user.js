@@ -28,6 +28,9 @@ const userSchema = Schema(
       type: Boolean,
       default: false,
     },
+    userRole: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

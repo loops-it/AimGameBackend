@@ -48,8 +48,8 @@ const createToken = async (req, res, next) => {
       const token = jwt.sign({ email, userId: user._id }, key, {
         expiresIn: "1h",
       });
-
-      return res.status(200).json({ success: true, code: 200, token });
+      const userID = user._id;
+      return res.status(200).json({ success: true, code: 200, token, userID });
     } else {
       return res
         .status(401)

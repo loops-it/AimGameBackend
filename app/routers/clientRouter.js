@@ -12,7 +12,7 @@ router
 router
   .route("/workspace/:workspaceId")
   .post([isAuth, uploadProfilePhoto], clientController.createClient)
-  .get(isAuth, clientController.getAllClientsByWorkspaceId);
+  .get(validateToken,clientController.getAllClientsByWorkspaceId);
 
 router
   .route("/:id")

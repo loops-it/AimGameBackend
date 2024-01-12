@@ -110,6 +110,7 @@ exports.forgetPassword = async ({ email }) => {
 
     const info = await sendEmail(recipientEmail, subject, htmlContent);
     const updatedUser = await UserModel.findByIdAndUpdate(user._id, {
+      otp: otp,
       otpExpiry: Date.now() + 600000,
     });
     console.log("updatedUser", updatedUser);
