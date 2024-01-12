@@ -3,13 +3,22 @@ const Schema = mongoose.Schema;
 
 const opportunitySchema = Schema({
   referenceNumber: {
-    type: String,
+    type: Number,
     required: true,
     unique: true,
   },
   name: {
     type: String,
     required: true,
+  },
+  department: {
+    type: String,
+  },
+  designation: {
+    type: String,
+  },
+  status: {
+    type: String,
   },
   workspaceId: {
     type: Schema.Types.ObjectId,
@@ -46,15 +55,12 @@ const opportunitySchema = Schema({
     {
       impact: {
         type: String,
-        required: true,
       },
       rate: {
         type: Number,
-        required: true,
       },
       role: {
         type: String,
-        required: true,
       },
       clientPerson: {
         type: Schema.Types.ObjectId,
