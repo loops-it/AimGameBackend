@@ -18,6 +18,9 @@ const userSchema = Schema(
     phone: { 
       type: String,
     },
+    designation: { 
+      type: String,
+    },
     otp: {
       type: String,
     },
@@ -29,6 +32,9 @@ const userSchema = Schema(
       default: false,
     },
     userRole: {
+      type: String,
+    },
+    image: {
       type: String,
     },
   },
