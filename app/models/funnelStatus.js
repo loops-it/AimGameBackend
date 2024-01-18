@@ -19,7 +19,7 @@ const funnelStatusSchema = Schema(
       type: Number,
       required: true,
     },
-    order: {
+    no: {
       type: Number,
       required: true,
     },
