@@ -1,5 +1,5 @@
 const express = require("express");
-const partnerController = require("../controllers/partnerController");
+const partnerController = require("../controllers/PartnerController");
 const { uploadProfilePhoto } = require("../middleware/image-upload.middleware");
 const router = express.Router();
 

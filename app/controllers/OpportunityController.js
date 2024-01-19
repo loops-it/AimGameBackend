@@ -121,7 +121,7 @@ exports.getOpportunityMappingRole = async (req, res, next) => {
 };
 
 exports.createOpportunityMappingRole = async (req, res, next) => {
-  try {
+  try { 
     const { id } = req.params;
     const data = await opportunityService.createOpportunityMappingRole(
       id,
@@ -165,6 +165,16 @@ exports.getOpportunityMembers = async (req, res, next) => {
   try {
     const { id } = req.params;
     const data = await opportunityService.getOpportunityMembers(id);
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.getOpportunityMappingRoles = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const data = await opportunityService.getOpportunityMappingRoles(id);
     res.status(200).json({ success: true, status: 200, data });
   } catch (error) {
     next(error);

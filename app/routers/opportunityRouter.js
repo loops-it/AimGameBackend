@@ -36,8 +36,8 @@ router
 
 router
   .route("/:id/mapping-role")
-  .post(validateToken, opportunityController.createOpportunityMappingRole);
-
+  .post(validateToken, opportunityController.createOpportunityMappingRole)
+  .get(validateToken, opportunityController.getOpportunityMappingRoles);
 router
   .route("/:id/mapping-role/:roleId")
   .get(validateToken, opportunityController.getOpportunityMappingRole)

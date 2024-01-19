@@ -1,7 +1,7 @@
 const { notFoundException } = require("../exception");
 const PartnerModel = require("../models/partner");
 const WorkspaceModel = require("../models/workspace");
-const s3service = require("../services/s3Service");
+const s3service = require("./s3Service");
 
 exports.getAllPartners = async () => {
   const partners = await PartnerModel.find({});

@@ -194,7 +194,7 @@ exports.createOpportunityMappingRole = async (id, data) => {
       {
         $push: {
           opportunityMappingRoles: data,
-        },
+        }, 
       },
       { new: true }
     );
@@ -256,6 +256,18 @@ exports.getOpportunityMembers = async (opportunityId) => {
       select: "_id name email",
     });
     return opportunity.team;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+exports.getOpportunityMappingRoles = async (opportunityId) => {
+  try {
+    const opportunity = await Opportunity.findById(opportunityId).populate({
+      path: "opportunityMappingRoles",
+    });
+    return opportunity.opportunityMappingRoles;
   } catch (error) {
     throw error;
   }

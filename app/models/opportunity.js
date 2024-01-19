@@ -53,18 +53,23 @@ const opportunitySchema = Schema({
   ],
   opportunityMappingRoles: [
     {
-      impact: {
+      name: {
         type: String,
       },
-      rate: {
-        type: Number,
+      designation: {
+        type: String,
+      },
+      department: {
+        type: String,
       },
       role: {
         type: String,
       },
-      clientPerson: {
-        type: Schema.Types.ObjectId,
-        ref: "ClientOrganization",
+      impact: {
+        type: String,
+      },
+      status: {
+        type: String,
       },
     },
   ],
