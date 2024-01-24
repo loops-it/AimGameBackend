@@ -24,5 +24,5 @@ router.use("/partners", partner);
 router.use("/opportunities", opportunity);
 router.use("/client-organizations", clientOrganizations);
 router.use("/tasks", tasks);
-
+router.use("/team-members", teamMembers);
 module.exports = router;
