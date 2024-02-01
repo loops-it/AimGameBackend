@@ -5,12 +5,12 @@ const TaskModel = require("../models/task");
 exports.getAllOpportunities = async (filter) => {
   console.log("filter", filter);
   const opportunities = await Opportunity.find(filter)
-    .populate({
-      path: "funnelStatusId",
-      model: FunnelStatusModel,
-      select: "_id status stage rate level order", // Specify the fields you want to include or exclude
-    })
-    .exec();
+  .populate({
+    path: "funnelStatusId",
+    model: FunnelStatusModel,
+    select: "_id status stage rate level", // Include 'level' in the select statement
+  })
+  .exec();
 
   return opportunities;
 };
