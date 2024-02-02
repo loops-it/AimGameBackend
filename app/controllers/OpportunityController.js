@@ -9,6 +9,7 @@ exports.getAllOpportunities = async (req, res, next) => {
     const filter = req.query;
 
     const data = await opportunityService.getAllOpportunities(filter);
+    // console.log("all data : ", data);
     res.status(200).json({ success: true, status: 200, data });
   } catch (error) {
     next(error);
@@ -83,6 +84,7 @@ exports.createOpportunity = async (req, res, next) => {
   try {
     await validate(validationRules.createOpportunity, req);
     const data = await opportunityService.createOpportunity(req.body);
+    // console.log("data create: ", data);
     res.status(201).json({ success: true, status: 201, data });
   } catch (error) {
     next(error);

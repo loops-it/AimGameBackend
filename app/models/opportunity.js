@@ -17,6 +17,13 @@ const opportunitySchema = Schema({
   designation: {
     type: String,
   },
+  creationDate: {
+    type: Date,
+    default: Date.now
+  },
+  completionDate: {
+    type: Date,
+  },
   status: {
     type: String,
   },
@@ -103,9 +110,10 @@ opportunitySchema.pre("save", async function (next) {
 opportunitySchema.pre("find", function (next) {
   this.populate({
     path: "funnelStatusId",
-    select: "status stage rate"
+    select: "status stage rate order"
   });
-  this.populate("leadId", "name");
+  this.populate("leadId", "name designation");
+  this.populate("team", "name image");
   this.populate("clientId", "name");
   next();
 });
