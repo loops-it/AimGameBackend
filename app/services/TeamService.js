@@ -48,7 +48,6 @@ exports.createTeamMember = async (user) => {
         otp,
         otpExpiry: Date.now() + 600000,
         isActive: true,
-        userRole:"team member",
         image:imagePath
       };
       const newUser = await new UserModel(user).save();
