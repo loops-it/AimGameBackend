@@ -43,5 +43,7 @@ router
   .get(validateToken, opportunityController.getOpportunityMappingRole)
   .put(validateToken, opportunityController.updateOpportunityMappingRole)
   .delete(validateToken, opportunityController.deleteOpportunityMappingRole);
-
+  router
+  .route("/search/:searchValue")
+  .get(validateToken, opportunityController.searchOpportunities);
 module.exports = router;

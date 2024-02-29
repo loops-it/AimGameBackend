@@ -181,4 +181,18 @@ exports.getOpportunityMappingRoles = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+
+  
+};
+
+exports.searchOpportunities = async (req, res, next) => {
+  try {
+    const { searchValue } = req.params;
+    const data = await opportunityService.searchOpportunities(searchValue);
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+
+  
 };

@@ -272,3 +272,18 @@ exports.getOpportunityMappingRoles = async (opportunityId) => {
     throw error;
   }
 };
+
+exports.searchOpportunities = async (searchValue) => {
+  console.log("searchValue", searchValue);
+  const opportunities = await Opportunity.find(  {
+    referenceNumber: searchValue,
+  })
+  .populate({
+    path: "funnelStatusId",
+    model: FunnelStatusModel,
+    select: "_id status stage rate level", // Include 'level' in the select statement
+  })
+  .exec();
+
+  return opportunities;
+};
