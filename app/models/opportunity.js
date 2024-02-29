@@ -110,7 +110,7 @@ opportunitySchema.pre("save", async function (next) {
 opportunitySchema.pre("find", function (next) {
   this.populate({
     path: "funnelStatusId",
-    select: "status stage rate order"
+    select: "status stage rate order level"
   });
   this.populate("leadId", "name designation");
   this.populate("team", "name image");

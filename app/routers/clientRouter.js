@@ -22,4 +22,7 @@ router
   .put(validateToken, clientController.updateClient)
   .delete(validateToken, clientController.deleteClient);
 
+router
+  .route("/search/:searchValue")
+  .get(validateToken, clientController.searchClients);
 module.exports = router;

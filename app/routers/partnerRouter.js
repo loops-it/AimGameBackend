@@ -19,4 +19,7 @@ router
   .put(validateToken, partnerController.updatePartner)
   .delete(validateToken, partnerController.deletePartner);
 
+router
+  .route("/filterbyworkspace/:workspaceId")
+  .get(validateToken, partnerController.filterByWorkspace);
 module.exports = router;

@@ -46,3 +46,14 @@ exports.updateTeamMember = async (req, res, next) => {
       next(error);
     }
   };
+  exports.searchTeamMembers = async (req, res, next) => {
+    try {
+      const { searchValue } = req.params;
+      const data = await teamService.searchTeamMembers(searchValue);
+      res.status(200).json({ success: true, status: 200, data });
+    } catch (error) {
+      next(error);
+    }
+  
+    
+  };

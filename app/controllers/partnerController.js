@@ -66,3 +66,13 @@ exports.deletePartner = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.filterByWorkspace = async (req, res, next) => {
+  try {
+    const workspaceId = req.params.workspaceId;
+    const data = await partnerService.filterByWorkspace(workspaceId);
+    res.status(200).json({ success: true, status: 200, data });
+  } catch (error) {
+    next(error);
+  }
+};

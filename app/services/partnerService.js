@@ -78,3 +78,9 @@ exports.deletePartner = async (id) => {
   const deletedPartner = await PartnerModel.findByIdAndDelete(id);
   return deletedPartner;
 };
+
+exports.filterByWorkspace = async (workspaceId) => {
+  console.log(workspaceId);
+  const partners = await PartnerModel.find({ workspaceId: workspaceId });
+  return partners;
+};

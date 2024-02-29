@@ -98,3 +98,12 @@ exports.deleteClient = async (id) => {
   const deletedClient = await ClientModel.findByIdAndDelete(id);
   return deletedClient;
 };
+
+exports.searchClients = async (searchValue) => {
+  console.log("searchValue", searchValue);
+  const clients = await ClientModel.find(  {
+    refNo: searchValue,
+  }).exec();
+
+  return clients;
+};

@@ -83,3 +83,12 @@ exports.createTeamMember = async (user) => {
       });
       return updatedUser;
   };
+
+  exports.searchTeamMembers = async (searchValue) => {
+    const users = await UserModel.find({
+      userRole: "team member",
+      email: searchValue,
+    });
+    return users;
+  };
+  

@@ -12,5 +12,7 @@ router
 router
   .route("/:id")
   .put(validateToken, TeamController.updateTeamMember)
-
+  router
+  .route("/search/:searchValue")
+  .get(validateToken, TeamController.searchTeamMembers);
 module.exports = router;
