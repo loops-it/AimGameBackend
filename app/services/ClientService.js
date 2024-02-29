@@ -47,9 +47,12 @@ exports.createClient = async (client) => {
       client.photo !== undefined &&
       client.photo !== ""
     ) {
+      console.log("client.photo :", client.photo)
       const image = client.photo;
-      const imageData = await s3service.upload(image, "clients");
-      client.photo = imageData.Location;
+      // const imageData = await s3service.upload(image, "clients");
+      const imagePath = "/uploads/" + client.photo.filename;
+      // client.photo = imageData.Location;
+      client.photo = imagePath;
     }
     const newClient = await new ClientModel(client).save();
     return newClient;

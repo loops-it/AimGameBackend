@@ -55,7 +55,7 @@ const validationRules = {
   createClient: {
     name: Joi.string().required(),
     address: Joi.string().required(),
-    photo: Joi.string().allow("", null),
+    // photo: Joi.string().allow("", null).optional(),
     industryTypeId: Joi.string().required(),
     email: Joi.string().email().required(),
     workspaceId: Joi.string().required(),

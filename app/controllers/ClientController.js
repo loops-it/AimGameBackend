@@ -43,6 +43,7 @@ exports.getClientById = async (req, res, next) => {
 };
 
 exports.createClient = async (req, res, next) => {
+  console.log("create client controller : ", req.body)
   try {
     await validate(validationRules.createClient, req);
     const data = await clientService.createClient(req.body);
