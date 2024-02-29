@@ -3,6 +3,8 @@ const clientController = require("../controllers/ClientController");
 const { uploadProfilePhoto } = require("../middleware/image-upload.middleware");
 const { validateToken, isAuth } = require("../middleware/authMiddleware");
 const router = express.Router();
+const multer = require("multer");
+const upload = multer();
 
 router
   .route("/")

@@ -36,7 +36,7 @@ exports.createTeamMember = async (user) => {
         user.image !== ""
       ) {
         const image = user.image;
-        const imageData = await s3service.upload(image, "teamMembers");
+        const imageData = await s3service.upload(image, "clients");
         var imagePath = imageData.Location;
       }
       else{
@@ -75,7 +75,7 @@ exports.createTeamMember = async (user) => {
         user.image !== ""
       ) {
         const image = user.image;
-        const imageData = await s3service.upload(image, "teamMembers");
+        const imageData = await s3service.upload(image, "clients");
         user.image = imageData.Location;
       }
       const updatedUser = await UserModel.findByIdAndUpdate(id, user, {

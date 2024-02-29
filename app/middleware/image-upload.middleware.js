@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Define the middleware function for file upload
 const uploadProfilePhoto = upload.single("photo");
 
 module.exports = { uploadProfilePhoto };
