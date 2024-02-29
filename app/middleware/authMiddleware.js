@@ -49,7 +49,8 @@ const createToken = async (req, res, next) => {
         expiresIn: "1h",
       });
       const userID = user._id;
-      return res.status(200).json({ success: true, code: 200, token, userID });
+      const userRole = user.userRole;
+      return res.status(200).json({ success: true, code: 200, token, userID, userRole });
     } else {
       return res
         .status(401)
